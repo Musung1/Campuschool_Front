@@ -9,6 +9,7 @@ import ClassDetailView from "./views/ClassDetailView";
 import MyOwnClassView from "./views/MyOwnClassView";
 import MyOpenClassView from "./views/MyOpenClassView";
 import MyClassRoomView from "./views/MyClassRoomView";
+import MyOpenClassRoomView from "./views/MyOpenClassRoomView";
 function App() {
   const CategoryPaper = styled(Paper)(({ theme }) => ({
     width: 1512,
@@ -18,7 +19,7 @@ function App() {
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
       <CategoryPaper alignItems="center">
         <Header></Header>
-        <MyClassRoomView></MyClassRoomView>
+        <MyOpenClassRoomView></MyOpenClassRoomView>
         <Tail></Tail>
       </CategoryPaper>
     </div>
