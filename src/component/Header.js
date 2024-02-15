@@ -2,7 +2,7 @@ import { Button,Stack,TextField,Typography} from "@mui/material";
 
 function Header() {
     return <div>
-        <Stack direction={"row"} justifyContent="space-between">
+        <Stack direction={"row"} justifyContent="space-between" margin={2}>
             <Typography variant="h4">캠퍼스쿨</Typography>
             <Stack direction={"row"} spacing={5}>
                 <Stack direction={"row"} spacing={1}>
