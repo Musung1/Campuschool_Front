@@ -1,10 +1,12 @@
-import { Typography,Stack} from "@mui/material";
+import { Typography,Stack,Button,} from "@mui/material";
+import { useState } from "react";
 import Box from '@mui/material/Box';
 import Tab from '@mui/material/Tab';
 import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
-import { useState } from "react";
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 
 
 function ClassDetailView() {
@@ -36,20 +38,66 @@ function ClassDetailView() {
           </Typography>
         </Stack>
       </div>
-      <Box sx={{ width: '100%', typography: 'body1' }}>
-      <TabContext value={value}>
-        <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-          <TabList onChange={handleChange} aria-label="lab API tabs example">
-            <Tab label="Item One" value="1" />
-            <Tab label="Item Two" value="2" />
-            <Tab label="Item Three" value="3" />
-          </TabList>
+      <Stack direction="row" justifyContent="space-between">
+        <div style={{ display: 'flex', justifyContent: 'left', alignItems: 'left', margin: 10, width:1000}}>
+          <Box sx={{ width: '100%', typography: 'body1' }}>
+          <TabContext value={value}>
+            <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+              <TabList onChange={handleChange} aria-label="lab API tabs example">
+                <Tab label="강사 정보" value="1" />
+                <Tab label="상세설명" value="2" />
+                <Tab label="커리큘럼" value="3" />
+                <Tab label="사진" value="4" />
+                <Tab label="리뷰" value="5" />
+              </TabList>
+            </Box>
+            <TabPanel value="1">hello</TabPanel>
+            <TabPanel value="2">Item Two</TabPanel>
+            <TabPanel value="3">Item Three</TabPanel>
+            <TabPanel value="4">Item Three</TabPanel>
+            <TabPanel value="5">Item Three</TabPanel>
+          </TabContext>
         </Box>
-        <TabPanel value="1">Item One</TabPanel>
-        <TabPanel value="2">Item Two</TabPanel>
-        <TabPanel value="3">Item Three</TabPanel>
-      </TabContext>
-    </Box>
+        </div>
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
+          <Stack alignItems="center" justifyContent="center">
+            <Typography variant="h6">
+                김무성 강사님께 질문해 보아요
+              </Typography>
+              <Stack direction={"row"} spacing={1}>
+                <Button
+                  style={{ width: '100px', height: '50px', fontSize: '20px' }}
+                  component="label"
+                  role={undefined}
+                  variant="contained"
+                  tabIndex={-1}
+                >
+                  <FavoriteIcon />
+                </Button>
+                <Button
+                  style={{ width: '200px', height: '50px', fontSize: '20px'}}
+                  component="label"
+                  role={undefined}
+                  variant="contained"
+                  tabIndex={-1}
+                  width="200"
+                >
+                  질문하기
+                </Button>
+              </Stack>
+              <Button
+                  style={{ width: '310px', height: '50px', fontSize: '20px',margin: 10 }}
+                  component="label"
+                  role={undefined}
+                  variant="contained"
+                  tabIndex={-1}
+                  width="200"
+                >
+                  강의 신청하기
+                </Button>
+          </Stack>
+          </div>
+      </Stack>
     </div>
   );
 }
