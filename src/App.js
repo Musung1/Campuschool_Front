@@ -7,6 +7,7 @@ import Tail from "./component/Tail";
 import { Paper,styled } from "@mui/material";
 import ClassDetailView from "./views/ClassDetailView";
 import MyOwnClassView from "./views/MyOwnClassView";
+import MyOpenClassView from "./views/MyOpenClassView";
 function App() {
   const CategoryPaper = styled(Paper)(({ theme }) => ({
     width: 1512,
@@ -16,7 +17,7 @@ function App() {
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
       <CategoryPaper alignItems="center">
         <Header></Header>
-        <MyOwnClassView></MyOwnClassView>
+        <MyOpenClassView></MyOpenClassView>
         <Tail></Tail>
       </CategoryPaper>
     </div>
