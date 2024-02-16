@@ -20,7 +20,7 @@ function App() {
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
       <CategoryPaper alignItems="center">
         <Header></Header>
-        <OpenClassView></OpenClassView>
+        <CategoryClassView></CategoryClassView>
         <Tail></Tail>
       </CategoryPaper>
     </div>

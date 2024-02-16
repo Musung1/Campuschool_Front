@@ -4,11 +4,13 @@ import CategoryFilter from "../component/CategoryFilter";
 import CategoryList from "../component/CategoryList";
 import Header from "../component/Header";
 import { Pagination,Paper,styled } from "@mui/material";
+import MyBreadCrum from "../component/MyBreadCrum";
 function CategoryClassView() {
   return (
     <div>
         <CategoryHeader name="Vocal"></CategoryHeader>
         <CategoryList></CategoryList>
+        <MyBreadCrum></MyBreadCrum>
         <CategoryFilter></CategoryFilter>
         <ClassGrid></ClassGrid>
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', margin: 10}}>
