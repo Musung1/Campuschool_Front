@@ -1,10 +1,9 @@
-import CarouselView from "./component/CarouselView";
-import CategoryHeader from "./component/CategoryHeader";
 import Header from "./component/Header";
 import CategoryClassView from "./views/CategoryClassView";
 import Home from "./views/HomeView";
-import Tail from "./component/Tail";
+import Footer from "./component/Footer";
 import { Paper,styled } from "@mui/material";
+import { Routes, Route} from 'react-router-dom';
 import ClassDetailView from "./views/ClassDetailView";
 import MyOwnClassView from "./views/MyOwnClassView";
 import MyOpenClassView from "./views/MyOpenClassView";
@@ -21,8 +20,19 @@ function App() {
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
       <CategoryPaper alignItems="center">
         <Header></Header>
-        <RegisterClassView></RegisterClassView>
-        <Tail></Tail>
+        <Routes>
+          <Route path="/" element={<Home/>}/>
+          <Route path="/classes" element={<CategoryClassView/>}/>
+          <Route path="/classes/:category" element={<CategoryClassView/>}/>
+          <Route path="/class/:id" element={<ClassDetailView/>}/>
+          <Route path="/class/register/:id" element={<RegisterClassView/>}/>
+          <Route path="/class/open" element={<OpenClassView/>}/>
+          <Route path="/user/register" element={<MyOwnClassView/>}/>
+          <Route path="/user/open" element={<MyOpenClassView/>}/>
+          <Route path="/class/classroom/:id" element={<MyClassRoomView/>}/>
+          <Route path="/class/teachingroom/:id" element={<MyOpenClassRoomView/>}/>
+        </Routes>
+        <Footer></Footer>
       </CategoryPaper>
     </div>
   );

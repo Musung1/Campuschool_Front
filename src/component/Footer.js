@@ -7,11 +7,11 @@ const CategoryPaper = styled(Paper)(({ theme }) => ({
     textAlign: 'center',
     margin: 10
   }));
-function Tail(props) {
+function Footer(props) {
     return (
         <CategoryPaper variant="elevation" style={{backgroundColor: 'black'}} >
             <h1>{props.name}</h1>
         </CategoryPaper>
     )
 }
-export default Tail;
+export default Footer;

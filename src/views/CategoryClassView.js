@@ -2,16 +2,16 @@ import CategoryHeader from "../component/CategoryHeader";
 import ClassGrid from "../component/ClassGrid";
 import CategoryFilter from "../component/CategoryFilter";
 import CategoryList from "../component/CategoryList";
-import Header from "../component/Header";
-import { Pagination,Paper,styled } from "@mui/material";
-import MyBreadCrum from "../component/MyBreadCrum";
+import { Pagination } from "@mui/material";
+import {useParams} from 'react-router-dom';
 function CategoryClassView() {
+  let category = useParams().category;
+  console.log(useParams())
   return (
     <div>
-        <CategoryHeader name="Vocal"></CategoryHeader>
+        <CategoryHeader name={category}></CategoryHeader>
         <CategoryList></CategoryList>
-        <MyBreadCrum></MyBreadCrum>
-        <CategoryFilter></CategoryFilter>
+        <CategoryFilter name={category}></CategoryFilter>
         <ClassGrid></ClassGrid>
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', margin: 10}}>
         <Pagination count={10} variant="outlined" shape="rounded" />
