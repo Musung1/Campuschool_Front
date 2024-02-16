@@ -2,28 +2,32 @@ import * as React from 'react';
 import Typography from '@mui/material/Typography';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Link from '@mui/material/Link';
+import { useNavigate } from 'react-router-dom';
 
 function handleClick(event) {
-  event.preventDefault();
-  console.info('You clicked a breadcrumb.');
+
 }
 
-export default function MyBreadCrum() {
+export default function MyBreadCrum(props) {
+  const navigate = useNavigate();
+
+  const goClasses = () => {
+    navigate('/classes')
+  }
+  function detail() {
+    console.log(props.name)
+    if(props.name != null) {
+      return <Typography variant="h6" color="text.primary">{props.name}</Typography>
+    }
+  }
   return (
-    <div role="presentation" onClick={handleClick}>
-      <Breadcrumbs aria-label="breadcrumb">
-        <Link underline="hover" color="inherit" href="/">
-          MUI
-        </Link>
-        <Link
-          underline="hover"
-          color="inherit"
-          href="/material-ui/getting-started/installation/"
-        >
-          Core
-        </Link>
-        <Typography color="text.primary">Breadcrumbs</Typography>
-      </Breadcrumbs>
-    </div>
+    <Breadcrumbs aria-label="breadcrumb">
+      <Link underline="hover" color="inherit" onClick={goClasses}>
+        <Typography variant="h6"> 
+          전체강의
+        </Typography>
+      </Link>
+      {detail()}
+  </Breadcrumbs>
   );
 }

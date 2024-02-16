@@ -1,6 +1,7 @@
 import { Typography } from "@mui/material";
 import { useState } from "react";
 import {Stack, TextField, Button, Chip, FormControl,InputLabel,Select,MenuItem,Box} from "@mui/material";
+import MyBreadCrum from "../component/MyBreadCrum";
 function CategoryFilter(props) {
     function handleClick(){}
     const [age, setAge] = useState(10);
@@ -11,9 +12,7 @@ function CategoryFilter(props) {
     return (
         <div style={{margin: 10}}>
             <Stack direction="row" justifyContent="space-between">
-                <Typography variant="h6">
-                    전체강의/보컬
-                </Typography>
+            <MyBreadCrum name={props.name}></MyBreadCrum>
                 <Stack direction={"row"} spacing={1}>
                     <TextField id="outlined-basic" label="Outlined" variant="outlined" size="small"sx={{ m: 1, width: '20ch' }} />
                     <Button variant="contained">검색</Button>

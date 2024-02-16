@@ -7,6 +7,7 @@ import picture from "../assets/categoryIcon/local_see.png";
 import dance from "../assets/categoryIcon/accessibility_new.png";
 import star from "../assets/categoryIcon/star.png";
 import { Typography, Box,Button } from "@mui/material";
+import { useNavigate } from 'react-router-dom';
 const imageConverter = (name)=> {
     switch(name) {
         case 'vocal':
@@ -28,8 +29,13 @@ const imageConverter = (name)=> {
     }
 }
 function CategoryIcon(props) {
+    const navigate = useNavigate();
+
+    const goCategoryDetail = (name) => {
+      navigate('/classes/' + name)
+    }
     return (
-        <Button>
+        <Button onClick={() => goCategoryDetail(props.name)}>
             <Box textAlign="center" >
             <img src={imageConverter(props.name)}></img>
             <Typography variant="h6">{props.name}</Typography>
