@@ -6,7 +6,7 @@ import coding from "../assets/categoryIcon/personal_video.png";
 import picture from "../assets/categoryIcon/local_see.png";
 import dance from "../assets/categoryIcon/accessibility_new.png";
 import star from "../assets/categoryIcon/star.png";
-import { Typography, Box } from "@mui/material";
+import { Typography, Box,Button } from "@mui/material";
 const imageConverter = (name)=> {
     switch(name) {
         case 'vocal':
@@ -28,9 +28,13 @@ const imageConverter = (name)=> {
     }
 }
 function CategoryIcon(props) {
-    return <Box textAlign="center" >
+    return (
+        <Button>
+            <Box textAlign="center" >
             <img src={imageConverter(props.name)}></img>
             <Typography variant="h6">{props.name}</Typography>
             </Box>
+        </Button>
+    );
 }
 export default CategoryIcon;
