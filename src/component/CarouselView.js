@@ -11,10 +11,12 @@ function CarouselView(props) {
     ]
 
     return (
-        <div>
+        <div style={{margin: 10}}>
+            <div style={{ display: 'flex', justifyContent: 'left', alignItems: 'left'}}>
             <Typography variant="h5">
                 {props.title}
             </Typography>
+            </div>
             <Carousel
             showArrows={true}
             centerMode={true}

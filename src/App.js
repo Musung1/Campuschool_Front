@@ -13,12 +13,12 @@ import OpenClassView from "./views/OpenClassView";
 import RegisterClassView from "./views/RegisterClassView";
 function App() {
   const CategoryPaper = styled(Paper)(({ theme }) => ({
-    width: 1512,
+    width: '70%',
     textAlign: 'center',
   }));
   return (
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-      <CategoryPaper alignItems="center">
+      <CategoryPaper>
         <Header></Header>
         <Routes>
           <Route path="/" element={<Home/>}/>
