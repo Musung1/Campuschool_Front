@@ -16,22 +16,16 @@ import Logout from '@mui/icons-material/Logout';
 import { login } from "../api/UserAPI";
 import useUserStore from "../store/UserStore";
 import { useEffect } from "react";
-import { getUser } from "../api/UserAPI";
+import { getUser,logout } from "../api/UserAPI";
 function Header() {
     const navigate = useNavigate();
-    const {user,setUser} = useUserStore();
-
-    const userDetail = async () => {
-      const userDTO = await getUser();
-      //setUser(userDTO);
-      console.log(userDTO);
-    }
-
+    const {user,userDetail} = useUserStore();
     useEffect(() => {
       userDetail()
     },[]); 
     const goHome = () => {
-      getUser()
+      userDetail()
+      console.log(user)
       navigate('/')
     }
     const goRegisterClass = () => {
@@ -50,12 +44,12 @@ function Header() {
                     <TextField id="outlined-basic" label="Outlined" variant="outlined" size="small"sx={{ m: 1, width: '60ch' }} />
                     <Button variant="contained">검색</Button>
                 </Stack>
-                {useNewUser()}
+                {user.name == null? <NewUser></NewUser> : <AccountMenu></AccountMenu> }
             </Stack>
         </Stack>
     </div>
 }
-function useNewUser() {
+function NewUser() {
   const navigate = useNavigate();
   const goLogin = () => {
     navigate('/login')
@@ -91,7 +85,7 @@ function loginUser() {
 }
 function AccountMenu() {
     const navigate = useNavigate();
-
+    const {user,setUser} = useUserStore();
     const goHome = () => {
       navigate('/')
     }
@@ -112,6 +106,13 @@ function AccountMenu() {
     const handleClose = () => {
       setAnchorEl(null);
     };
+    const logoutButtonClick = async() => {
+      const userState = await logout();
+      localStorage.clear()
+      if(userState) {
+        setUser({})
+      }
+    }
     return (
       <React.Fragment>
         <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
@@ -186,7 +187,7 @@ function AccountMenu() {
             </ListItemIcon>
             강의 개설하기
           </MenuItem>
-          <MenuItem onClick={handleClose}>
+          <MenuItem onClick={logoutButtonClick}>
             <ListItemIcon>
               <Logout fontSize="small" />
             </ListItemIcon>

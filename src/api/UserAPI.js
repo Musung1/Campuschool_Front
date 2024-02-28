@@ -46,6 +46,15 @@ export const login = async (loginForm) => {
         throw error;
     }
   }
+  export const logout = async () => {
+    try {
+      const response = await apiService.get('/logout');
+      console.log(response.data)
+      return response.data;
+    } catch (error) {
+        throw error;
+    }
+  }
   export const getUser = async () => {
     try {
       console.log(localStorage.getItem('accessToken'))

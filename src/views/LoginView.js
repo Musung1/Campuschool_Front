@@ -2,8 +2,10 @@ import { Stack,TextField,Typography,Button } from "@mui/material";
 import { useState } from "react";
 import { login } from "../api/UserAPI";
 import { useNavigate } from 'react-router-dom';
+import useUserStore from "../store/UserStore";
 export function LoginView() {
     const navigate = useNavigate();
+    const {userDetail} = useUserStore();
 
     const goHome = () => {
       navigate('/')
@@ -15,6 +17,7 @@ export function LoginView() {
     const loginButtonClick = async () => {
         console.log(loginForm)
         const user = await login(loginForm);
+        userDetail()
         goHome();
     }
     return (
