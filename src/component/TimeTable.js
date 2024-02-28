@@ -40,7 +40,7 @@ function TimeTable() {
 function UseTimeCell({ day, time}) {
     const {avaliableTimeList,addAvaliableTime,removeAvaliableTime} = useLectureFormStore();
     const [clicked, setClicked] = useState(false)
-
+    
     const checkHandle = () => {
         if (!clicked) {
             // 새로운 선택 시간을 추가합니다.

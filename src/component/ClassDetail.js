@@ -53,14 +53,14 @@ export function ClassDetail() {
               value={categoryType}
               onChange={categoryChange}
             >
-              <MenuItem value="Vocal">Vocal</MenuItem>
-              <MenuItem value="Music">Music</MenuItem>
-              <MenuItem value="Cook">Cook</MenuItem>
-              <MenuItem value="Exercise">Exercise</MenuItem>
-              <MenuItem value="Coding">Coding</MenuItem>
-              <MenuItem value="Picture">Picture</MenuItem>
-              <MenuItem value="Dance">Dance</MenuItem>
-              <MenuItem value="Star">Star</MenuItem>
+              <MenuItem value="VOCAL">Vocal</MenuItem>
+              <MenuItem value="MUSIC">Music</MenuItem>
+              <MenuItem value="COOK">Cook</MenuItem>
+              <MenuItem value="EXERCISE">Exercise</MenuItem>
+              <MenuItem value="CODING">Coding</MenuItem>
+              <MenuItem value="PICTURE">Picture</MenuItem>
+              <MenuItem value="DANCE">Dance</MenuItem>
+              <MenuItem value="STAR">Star</MenuItem>
             </Select>
           </FormControl>
           <Typography variant="h5">강의 레벨</Typography>
@@ -70,9 +70,9 @@ export function ClassDetail() {
               value={difficulty}
               onChange={difficultyChange}
             >
-              <MenuItem value="초급">초급</MenuItem>
-              <MenuItem value="중급">중급</MenuItem>
-              <MenuItem value="고급">고급</MenuItem>
+              <MenuItem value="LOW">초급</MenuItem>
+              <MenuItem value="MIDDLE">중급</MenuItem>
+              <MenuItem value="HIGH">고급</MenuItem>
             </Select>
           </FormControl>
         </Stack>

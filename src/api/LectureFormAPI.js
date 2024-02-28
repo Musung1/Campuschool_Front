@@ -6,6 +6,7 @@ export const createLectureForm = async (lectureForm) => {
         return response.data;
       } catch (error) {
         console.error('Error fetching lecture:', error);
-        throw error;
+        console.error(lectureForm)
+        //throw error;
       }
 }

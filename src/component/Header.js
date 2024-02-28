@@ -13,10 +13,25 @@ import Tooltip from '@mui/material/Tooltip';
 import PersonAdd from '@mui/icons-material/PersonAdd';
 import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
+import { login } from "../api/UserAPI";
+import useUserStore from "../store/UserStore";
+import { useEffect } from "react";
+import { getUser } from "../api/UserAPI";
 function Header() {
     const navigate = useNavigate();
+    const {user,setUser} = useUserStore();
 
+    const userDetail = async () => {
+      const userDTO = await getUser();
+      //setUser(userDTO);
+      console.log(userDTO);
+    }
+
+    useEffect(() => {
+      userDetail()
+    },[]); 
     const goHome = () => {
+      getUser()
       navigate('/')
     }
     const goRegisterClass = () => {
@@ -35,17 +50,24 @@ function Header() {
                     <TextField id="outlined-basic" label="Outlined" variant="outlined" size="small"sx={{ m: 1, width: '60ch' }} />
                     <Button variant="contained">검색</Button>
                 </Stack>
-                {AccountMenu()}
+                {useNewUser()}
             </Stack>
         </Stack>
     </div>
 }
-function newUser() {
+function useNewUser() {
+  const navigate = useNavigate();
+  const goLogin = () => {
+    navigate('/login')
+  }
+  const goSignUp = () => {
+    navigate('/signUp')
+  }
     return (
         <div>
             <Stack direction={"row"} spacing={2}>
-            <Button variant="outlined">로그인</Button>
-            <Button variant="contained">회원가입</Button>
+            <Button variant="outlined" onClick={goLogin}>로그인</Button>
+            <Button variant="contained" onClick={goSignUp}>회원가입</Button>
         </Stack>
         </div>
     )

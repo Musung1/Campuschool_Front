@@ -82,16 +82,16 @@ function useCreateButton() {
   const sendLecture = async () => {
       const state = useLectureFormStore.getState();
       const lectureForm = {
-          title: state.title,
-          day : state.day,
-          description: state.description,
-          categoryType: state.categoryType,
-          difficulty: state.difficulty,
+          title: String(state.title),
+          day : (state.day),
+          description: String(state.description),
+          categoryType: String(state.categoryType),
+          difficulty: String(state.difficulty),
           curriculumList: state.curriculumList,
           avaliableTimeList: state.avaliableTimeList,
       }
       console.log(lectureForm)
-      await createLectureForm();
+      await createLectureForm(lectureForm);
       goHome();
   }
   const goHome = () => {

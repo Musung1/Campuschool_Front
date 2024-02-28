@@ -4,7 +4,7 @@ import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import useLectureFormStore from "../store/LectureFormStore";
 import { useEffect } from "react";
 export function Curriculums() {
-    const [index, setIndex] = useState(2)
+    const [num, setNum] = useState(2)
     const {curriculumList,setCurriculumList,updateCurriculumItem} = useLectureFormStore();
     const [localCurriculumList, setLocalCurriculumList] = useState(curriculumList);
     useEffect(() => {
@@ -13,8 +13,8 @@ export function Curriculums() {
     }, [curriculumList]);
     const addCurriculum = () => {
         console.log(curriculumList)
-      setCurriculumList({index:index,content:""})
-      setIndex(index+1)
+      setCurriculumList({num:num,content:""})
+      setNum(num+1)
     }
     return (
       <div>
@@ -31,21 +31,21 @@ export function Curriculums() {
   
     );
     function curriculumComponent(curriculum) {
-        const id = curriculum.index + "label"
-        const handleUpdateCurriculum = (index, newContent) => {
+        const id = curriculum.num + "label"
+        const handleUpdateCurriculum = (num, newContent) => {
             const updatedList = [...localCurriculumList];
-            updatedList[index] = { ...updatedList[index], content: newContent };
+            updatedList[num] = { ...updatedList[num], content: newContent };
             setLocalCurriculumList(updatedList);
-            updateCurriculumItem(index, newContent);
+            updateCurriculumItem(num, newContent);
         };
         const handleChange = (e) => {
             console.log(e.target.value)
-            updateCurriculumItem(curriculum.index,e.target.value)
+            updateCurriculumItem(curriculum.num,e.target.value)
         }
         return(
-          <Stack key={curriculum.index}>
-            <Typography variant="h5">{curriculum.index + "회차"}</Typography>
-            <TextField id= {id} label="내용" variant="outlined" value={curriculum.content} onChange={(e)=>handleUpdateCurriculum(curriculum.index-1,e.target.value)} />
+          <Stack key={curriculum.num}>
+            <Typography variant="h5">{curriculum.num + "회차"}</Typography>
+            <TextField id= {id} label="내용" variant="outlined" value={curriculum.content} onChange={(e)=>handleUpdateCurriculum(curriculum.num-1,e.target.value)} />
           </Stack>
         );
       }

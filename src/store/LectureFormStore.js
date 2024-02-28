@@ -13,13 +13,13 @@ const useLectureFormStore = create((set) => ({
     setCategoryType: (value)=> set({categoryType:value}),
     difficulty: "초급",
     setDifficulty: (value)=> set({difficulty:value}),
-    curriculumList: [{index:1,content:""}],
+    curriculumList: [{num:1,content:""}],
     setCurriculumList: (newCurriculumList)=>
      set((prev)=>({curriculumList: [...prev.curriculumList,newCurriculumList]})),
-    updateCurriculumItem: (index, newContent) =>
+    updateCurriculumItem: (num, newContent) =>
     set((prev) => {
         const updatedCurriculumList = [...prev.curriculumList];
-        updatedCurriculumList[index] = { ...updatedCurriculumList[index], content: newContent };
+        updatedCurriculumList[num] = { ...updatedCurriculumList[num], content: newContent };
         return { curriculumList: updatedCurriculumList };
     }),
     avaliableTimeList: [],
