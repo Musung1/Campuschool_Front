@@ -25,11 +25,9 @@ function CategoryList(props) {
     }
     const list = categories.map((category)=><CategoryIcon name = {categoryConverter(category)}></CategoryIcon>);
     return (
-        <div style={{ display: 'flex', justifyContent: 'center' }}>
-            <Stack direction={"row"} spacing={10}>
-                {list}
-            </Stack>
-        </div>
+        <Stack direction={"row"} spacing={5} alignItems={"center"}textAlign={"center"} justifyContent={"center"}>
+        {list}
+        </Stack>
     );
 }
 export default CategoryList;

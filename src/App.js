@@ -11,17 +11,21 @@ import MyClassRoomView from "./views/MyClassRoomView";
 import MyOpenClassRoomView from "./views/MyOpenClassRoomView";
 import OpenClassView from "./views/OpenClassView";
 import RegisterClassView from "./views/RegisterClassView";
+import { LoginView } from "./views/LoginView";
+import { SignUpView } from "./views/SignUpView";
 function App() {
   const CategoryPaper = styled(Paper)(({ theme }) => ({
-    width: 1512,
+    width: '70%',
     textAlign: 'center',
   }));
   return (
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-      <CategoryPaper alignItems="center">
+      <CategoryPaper>
         <Header></Header>
         <Routes>
           <Route path="/" element={<Home/>}/>
+          <Route path="/login" element={<LoginView/>}/>
+          <Route path="/signup" element={<SignUpView/>}/>
           <Route path="/classes" element={<CategoryClassView/>}/>
           <Route path="/classes/:category" element={<CategoryClassView/>}/>
           <Route path="/class/:id" element={<ClassDetailView/>}/>

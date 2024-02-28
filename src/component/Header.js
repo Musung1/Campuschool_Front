@@ -13,10 +13,19 @@ import Tooltip from '@mui/material/Tooltip';
 import PersonAdd from '@mui/icons-material/PersonAdd';
 import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
+import { login } from "../api/UserAPI";
+import useUserStore from "../store/UserStore";
+import { useEffect } from "react";
+import { getUser,logout } from "../api/UserAPI";
 function Header() {
     const navigate = useNavigate();
-
+    const {user,userDetail} = useUserStore();
+    useEffect(() => {
+      userDetail()
+    },[]); 
     const goHome = () => {
+      userDetail()
+      console.log(user)
       navigate('/')
     }
     const goRegisterClass = () => {
@@ -35,17 +44,24 @@ function Header() {
                     <TextField id="outlined-basic" label="Outlined" variant="outlined" size="small"sx={{ m: 1, width: '60ch' }} />
                     <Button variant="contained">검색</Button>
                 </Stack>
-                {AccountMenu()}
+                {user.name == null? <NewUser></NewUser> : <AccountMenu></AccountMenu> }
             </Stack>
         </Stack>
     </div>
 }
-function newUser() {
+function NewUser() {
+  const navigate = useNavigate();
+  const goLogin = () => {
+    navigate('/login')
+  }
+  const goSignUp = () => {
+    navigate('/signUp')
+  }
     return (
         <div>
             <Stack direction={"row"} spacing={2}>
-            <Button variant="outlined">로그인</Button>
-            <Button variant="contained">회원가입</Button>
+            <Button variant="outlined" onClick={goLogin}>로그인</Button>
+            <Button variant="contained" onClick={goSignUp}>회원가입</Button>
         </Stack>
         </div>
     )
@@ -69,7 +85,7 @@ function loginUser() {
 }
 function AccountMenu() {
     const navigate = useNavigate();
-
+    const {user,setUser} = useUserStore();
     const goHome = () => {
       navigate('/')
     }
@@ -90,6 +106,13 @@ function AccountMenu() {
     const handleClose = () => {
       setAnchorEl(null);
     };
+    const logoutButtonClick = async() => {
+      const userState = await logout();
+      localStorage.clear()
+      if(userState) {
+        setUser({})
+      }
+    }
     return (
       <React.Fragment>
         <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
@@ -164,7 +187,7 @@ function AccountMenu() {
             </ListItemIcon>
             강의 개설하기
           </MenuItem>
-          <MenuItem onClick={handleClose}>
+          <MenuItem onClick={logoutButtonClick}>
             <ListItemIcon>
               <Logout fontSize="small" />
             </ListItemIcon>
