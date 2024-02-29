@@ -10,3 +10,12 @@ export const createLectureForm = async (lectureForm) => {
         //throw error;
       }
 }
+export const getPopularLectures = async () => {
+  try {
+    const response = await fileAPIService.get('/class/popular');
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching lecture:', error);
+    //throw error;
+  }
+}

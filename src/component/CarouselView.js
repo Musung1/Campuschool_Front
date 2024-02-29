@@ -2,14 +2,17 @@ import LectureCard from "./LectureCard";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from "react-responsive-carousel";
 import { Stack,Button,Paper, Typography } from "@mui/material";
+import { useLectureCardStore } from "../store/LectureCardStore";
 function CarouselView(props) {
-    var items = [
-        <LectureCard name="1"></LectureCard>,
-        <LectureCard name="2"></LectureCard>,
-        <LectureCard name="3"></LectureCard>,
-        <LectureCard name="4"></LectureCard>,
-    ]
-
+    const {popularLectures, setPopularLectures } = useLectureCardStore();
+    const contents = () => {
+        var lectures = [];
+        if(props.type === "popular") {
+            lectures = popularLectures
+        }
+        console.log(lectures)
+        return lectures.map((lecture)=> <LectureCard lecture={lecture}></LectureCard>)
+    }
     return (
         <div style={{margin: 10}}>
             <div style={{ display: 'flex', justifyContent: 'left', alignItems: 'left'}}>
@@ -25,7 +28,7 @@ function CarouselView(props) {
             showStatus={false}
             autoPlay={false}
             infiniteLoop={false}>
-                {items.map((item)=>item)}
+            {contents()}
             </Carousel>
         </div>
     )

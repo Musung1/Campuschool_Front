@@ -86,7 +86,7 @@ function useCreateButton() {
       
       const lectureForm = {
           title: String(state.title),
-          img: state.img,
+          //img : state.img
           day : (state.day),
           description: String(state.description),
           categoryType: String(state.categoryType),
@@ -95,6 +95,7 @@ function useCreateButton() {
           avaliableTimeList: state.avaliableTimeList,
       }
       setFormData(formData,lectureForm)
+      formData.append('img',state.img,state.img.name)
       const arrQueryString = [];
       for (let pair of formData.entries()) {
           console.log(`${pair[0]} = ${pair[1]}`);
