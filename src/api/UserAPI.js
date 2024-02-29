@@ -9,12 +9,19 @@ export const apiService = axios.create({
   },
   withCredentials: true,
 });
+export const fileAPIService = axios.create({
+  baseURL: API_BASE_URL,
+  headers: {
+    'Content-Type': 'multipart/form-data' 
+  },
+  withCredentials: true,
+});
 export const loginedUserAPIService = axios.create({
   baseURL: API_BASE_URL,
   headers: {
     'Content-Type': 'application/json',
-    'Authorization': `Bearer/u0020${localStorage.getItem('accessToken')}`,
-    'RefreshToken': `Bearer/u0020${localStorage.getItem('refreshToken')}`,
+    'Authorization': localStorage.getItem('accessToken'),
+    'RefreshToken': localStorage.getItem('refreshToken'),
   },
   withCredentials: true,
 });
@@ -27,8 +34,8 @@ const saveTokensToStorage = (accessToken, refreshToken) => {
 export const login = async (loginForm) => {
     try {
       const response = await apiService.post('/login',loginForm);
-      const accessToken = response.headers.get("Authorization").split('Bearer/u0020')[1]
-      const refreshToken = response.headers.get("RefreshToken").split('Bearer/u0020')[1]
+      const accessToken = response.headers.get("Authorization")
+      const refreshToken = response.headers.get("RefreshToken")
       saveTokensToStorage(accessToken,refreshToken)
       console.log(accessToken)
       console.log(refreshToken)
@@ -57,7 +64,6 @@ export const login = async (loginForm) => {
   }
   export const getUser = async () => {
     try {
-      console.log(localStorage.getItem('accessToken'))
       const response = await loginedUserAPIService.get('/user');
       return response.data;
     } catch (error) {

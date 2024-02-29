@@ -5,6 +5,8 @@ import { createLectureForm } from '../api/LectureFormAPI';
 const useLectureFormStore = create((set) => ({
     title: "",
     setTitle: (value)=> set({title:value}),
+    img: null,
+    setImage: (value)=> set({img:value}),
     day : 1,
     setDay: (value)=> set({day:value}),
     description: "",

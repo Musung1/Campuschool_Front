@@ -1,6 +1,7 @@
 import { Typography,styled,Paper,Stack,Button,TextField,FormControl,IconButton,Select,MenuItem } from "@mui/material";
 import React, { useState } from "react";
 import useLectureFormStore from "../store/LectureFormStore";
+import ImageUpload from "./ImageUpload";
 export function ClassDetail() {
     const {title,setTitle,day,setDay,description,setDescription,categoryType,setCategoryType,difficulty,setDifficulty} = useLectureFormStore();
     const lectureNameChange = (event) => {
@@ -23,6 +24,8 @@ export function ClassDetail() {
         <Stack spacing={1} alignItems={"left"}textAlign={"left"} justifyContent={"left"}>
           <Typography variant="h5">강의 명</Typography>
           <TextField id="class-name" label="강의명" variant="outlined" value={title} onChange={lectureNameChange}/>
+          <Typography variant="h5">대표 이미지 선택</Typography>
+          <ImageUpload></ImageUpload>
           <Typography variant="h5">강의 내용</Typography>
           <TextField
               id="class-detail"
