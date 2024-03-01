@@ -5,13 +5,15 @@ import { createLectureForm } from '../api/LectureFormAPI';
 const useLectureFormStore = create((set) => ({
     title: "",
     setTitle: (value)=> set({title:value}),
+    img: null,
+    setImage: (value)=> set({img:value}),
     day : 1,
     setDay: (value)=> set({day:value}),
     description: "",
     setDescription: (value)=> set({description:value}),
-    categoryType: "Vocal",
+    categoryType: "VOCAL",
     setCategoryType: (value)=> set({categoryType:value}),
-    difficulty: "초급",
+    difficulty: "LOW",
     setDifficulty: (value)=> set({difficulty:value}),
     curriculumList: [{num:1,content:""}],
     setCurriculumList: (newCurriculumList)=>

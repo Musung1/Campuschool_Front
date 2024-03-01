@@ -15,7 +15,6 @@ export default function MyBreadCrum(props) {
     navigate('/classes')
   }
   function detail() {
-    console.log(props.name)
     if(props.name != null) {
       return <Typography variant="h6" color="text.primary">{props.name}</Typography>
     }

@@ -1,24 +1,21 @@
 import LectureCard from "./LectureCard";
 import { Grid } from "@mui/material";
+import { useLectureCardStore } from "../store/LectureCardStore";
+import { useLectureSearchStore } from "../store/LectureSearchStore";
 function ClassGrid(props) {
-    var items = [
-        <LectureCard name="1"></LectureCard>,
-        <LectureCard name="2"></LectureCard>,
-        <LectureCard name="3"></LectureCard>,
-        <LectureCard name="4"></LectureCard>,
-        <LectureCard name="1"></LectureCard>,
-        <LectureCard name="2"></LectureCard>,
-        <LectureCard name="3"></LectureCard>,
-        <LectureCard name="4"></LectureCard>,
-        <LectureCard name="1"></LectureCard>,
-        <LectureCard name="2"></LectureCard>,
-        <LectureCard name="3"></LectureCard>,
-        <LectureCard name="4"></LectureCard>,
-    ]
+    const {currentPage} = useLectureSearchStore();
+    const contents = () => {
+        var lectures = []
+        if(currentPage.content != null) {
+            lectures = currentPage.content
+        }
+        console.log(currentPage)
+        return lectures.map((lecture)=> <LectureCard lecture={lecture}></LectureCard>)
+    }
     return (
         <div>
             <Grid container rowSpacing={5} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-                {items.map((item)=> <Grid item xs={3}>{item}</Grid>)}
+                {contents().map((item)=> <Grid item xs={3}>{item}</Grid>)}
             </Grid>
         </div>
     )

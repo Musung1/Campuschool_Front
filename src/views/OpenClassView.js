@@ -33,25 +33,7 @@ function OpenClassView() {
     </div>
   );
 }
-function ProgressTab(name) {
-    return (
-        <div>
-            <Stack direction={"row"}>
-                <Typography variant="h6" width={100}>
-                    {name}
-                </Typography>
-                {Circle()}
-            </Stack>
-        </div>
-    );
-}
-function Circle() {
-    return (
-      <svg width="30" height="30">
-        <circle cx="15" cy="16" r="10" stroke="black" strokeWidth="1" fill="red" />
-      </svg>
-    );
-  }
+
 function OpenClassTab() {
     const [value, setValue] = useState('2');
     const tabItems = ["강의 상세", "커리큘럼", "되는 시간"]
@@ -81,8 +63,30 @@ function useCreateButton() {
   const navigate = useNavigate();
   const sendLecture = async () => {
       const state = useLectureFormStore.getState();
+      const formData = new FormData();
+      // formData.append('title', state.title);
+      // //formData.append('img', state.img);
+      // formData.append('day', state.day);
+      // formData.append('description', state.description);
+      // formData.append('categoryType', state.categoryType);
+      // formData.append('difficulty', state.difficulty);
+      // for(let i = 0; i < state.curriculumList; i++) {
+      //   formData.append('curriculumList['+i+'].num',state.curriculumList[i].num)
+      //   formData.append('curriculumList['+i+'].content',state.curriculumList[i].content)
+      // }
+      // for(let i = 0; i < state.curriculumList; i++) {
+      //   formData.append('avaliableTimeList['+i+'].day',state.avaliableTimeList[i].day)
+      //   formData.append('avaliableTimeList['+i+'].time',state.avaliableTimeList[i].time)
+      // }
+      // Object.entries(state.curriculumList).forEach(item => formData.append(item[0], item[1]));
+      // Object.entries(state.avaliableTimeList).forEach(item => formData.append(item[0], item[1]));
+      //formData.append('curriculumList', JSON.stringify(state.curriculumList));
+      //formData.append('avaliableTimeList', JSON.stringify(state.avaliableTimeList));
+      console.log(formData)
+      
       const lectureForm = {
           title: String(state.title),
+          //img : state.img
           day : (state.day),
           description: String(state.description),
           categoryType: String(state.categoryType),
@@ -90,8 +94,15 @@ function useCreateButton() {
           curriculumList: state.curriculumList,
           avaliableTimeList: state.avaliableTimeList,
       }
-      console.log(lectureForm)
-      await createLectureForm(lectureForm);
+      setFormData(formData,lectureForm)
+      formData.append('img',state.img,state.img.name)
+      const arrQueryString = [];
+      for (let pair of formData.entries()) {
+          console.log(`${pair[0]} = ${pair[1]}`);
+          arrQueryString.push(`${pair[0]}=${pair[1]}`);
+      }
+      console.log(`query string = ${arrQueryString.join('&')}`);
+      await createLectureForm(formData);
       goHome();
   }
   const goHome = () => {
@@ -116,5 +127,33 @@ function useCreateButton() {
     </Stack>
     </div>
   );
+}
+function setFormData(formData, data, parentKey)
+{
+    if (!(formData instanceof FormData)) return;
+    if (!(data instanceof Object)) return;
+ 
+    Object.keys(data).forEach(key => {
+        const val = data[key];
+        if (parentKey) key = `${parentKey}.${key}`;
+ 
+        if (val instanceof Object && !Array.isArray(val)) {
+            return setFormData(formData, val, key);
+        }
+ 
+        if (Array.isArray(val)) {
+            val.forEach((v, idx) => {
+                if (v instanceof Object) {
+                    setFormData(formData, v, `${key}[${idx}]`);
+                }
+                else {
+                    formData.append(`${key}[${idx}]`, v);
+                }
+            });
+        }
+        else {
+            formData.append(key, val);
+        }
+    });
 }
 export default OpenClassView;

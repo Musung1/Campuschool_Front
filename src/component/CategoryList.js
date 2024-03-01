@@ -6,21 +6,21 @@ function CategoryList(props) {
     const categoryConverter = (category)=> {
         switch(category) {
             case "보컬":
-                return "vocal"
+                return "VOCAL"
             case "음악":
-                return "music"
+                return "MUSIC"
             case "요리":
-                return "cook"
+                return "COOK"
             case "운동":
-                return "exercise"
+                return "EXERCISE"
             case "코딩":
-                return "coding"
+                return "CODING"
             case "촬영":
-                return "picture"
+                return "PICTURE"
             case "댄스":
-                return "dance"
+                return "DANCE"
             case "기타":
-                return "star"
+                return "STAR"
         }
     }
     const list = categories.map((category)=><CategoryIcon name = {categoryConverter(category)}></CategoryIcon>);
