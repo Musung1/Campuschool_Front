@@ -11,9 +11,9 @@ const useLectureFormStore = create((set) => ({
     setDay: (value)=> set({day:value}),
     description: "",
     setDescription: (value)=> set({description:value}),
-    categoryType: "Vocal",
+    categoryType: "VOCAL",
     setCategoryType: (value)=> set({categoryType:value}),
-    difficulty: "초급",
+    difficulty: "LOW",
     setDifficulty: (value)=> set({difficulty:value}),
     curriculumList: [{num:1,content:""}],
     setCurriculumList: (newCurriculumList)=>

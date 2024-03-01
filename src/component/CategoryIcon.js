@@ -10,21 +10,21 @@ import { Typography, Box,Button } from "@mui/material";
 import { useNavigate } from 'react-router-dom';
 const imageConverter = (name)=> {
     switch(name) {
-        case 'vocal':
+        case 'VOCAL':
             return vocal
-        case "music":
+        case "MUSIC":
             return music
-        case "cook":
+        case "COOK":
             return cook
-        case "exercise":
+        case "EXERCISE":
             return exercise
-        case "coding":
+        case "CODING":
             return coding
-        case "picture":
+        case "PICTURE":
             return picture
-        case "dance":
+        case "DANCE":
             return dance
-        case "star":
+        case "STAR":
             return star
     }
 }

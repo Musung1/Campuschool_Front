@@ -4,13 +4,14 @@ import { Carousel } from "react-responsive-carousel";
 import { Stack,Button,Paper, Typography } from "@mui/material";
 import { useLectureCardStore } from "../store/LectureCardStore";
 function CarouselView(props) {
-    const {popularLectures, setPopularLectures } = useLectureCardStore();
+    const {popularLectures, recentLectures } = useLectureCardStore();
     const contents = () => {
         var lectures = [];
         if(props.type === "popular") {
             lectures = popularLectures
+        } else if(props.type === "recent") {
+            lectures = recentLectures
         }
-        console.log(lectures)
         return lectures.map((lecture)=> <LectureCard lecture={lecture}></LectureCard>)
     }
     return (
