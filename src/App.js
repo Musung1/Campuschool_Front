@@ -13,6 +13,7 @@ import OpenClassView from "./views/OpenClassView";
 import RegisterClassView from "./views/RegisterClassView";
 import { LoginView } from "./views/LoginView";
 import { SignUpView } from "./views/SignUpView";
+import ProfileView from "./views/\bProfileView";
 function App() {
   const CategoryPaper = styled(Paper)(({ theme }) => ({
     width: '70%',
@@ -26,6 +27,7 @@ function App() {
           <Route path="/" element={<Home/>}/>
           <Route path="/login" element={<LoginView/>}/>
           <Route path="/signup" element={<SignUpView/>}/>
+          <Route path="/profile" element={<ProfileView/>}/>
           <Route path="/classes" element={<CategoryClassView/>}/>
           <Route path="/classes/:category" element={<CategoryClassView/>}/>
           <Route path="/class/:id" element={<ClassDetailView/>}/>

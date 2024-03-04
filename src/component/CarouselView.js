@@ -8,8 +8,10 @@ function CarouselView(props) {
     const contents = () => {
         var lectures = [];
         if(props.type === "popular") {
+            if (popularLectures == null) return null
             lectures = popularLectures
         } else if(props.type === "recent") {
+            if (recentLectures == null) return null
             lectures = recentLectures
         }
         return lectures.map((lecture)=> <LectureCard lecture={lecture}></LectureCard>)
