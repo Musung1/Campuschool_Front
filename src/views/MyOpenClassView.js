@@ -4,11 +4,13 @@ import Tab from '@mui/material/Tab';
 import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useLectureCardStore } from "../store/LectureCardStore";
+import ClassGrid from "../component/ClassGrid";
 
 function MyOwnClassView() {
     const CategoryPaper = styled(Paper)(({ theme }) => ({
-        height: 300,
+        height: 1000,
         padding: theme.spacing(2),
         ...theme.typography.h2,
         textAlign: 'center',
@@ -28,11 +30,17 @@ function MyOwnClassView() {
 }
 function MyOpenTab() {
     const [value, setValue] = useState('1');
+    const {myOpenLectures, setMyOpenLectures} = useLectureCardStore();
+    useEffect(()=> {
+      setMyOpenLectures();
+      console.log(myOpenLectures)
+    },[])
 
     const handleChange = (event, newValue) => {
       setValue(newValue);
     };
     return (
+      myOpenLectures != null ? 
         <div style={{ display: 'flex', justifyContent: 'left', alignItems: 'left', margin: 10}}>
         <Box sx={{ width: '100%', typography: 'body1' }}>
         <TabContext value={value}>
@@ -42,12 +50,18 @@ function MyOpenTab() {
               <Tab label="종료된 강의" value="2" />
             </TabList>
           </Box>
-          <TabPanel value="1">hello</TabPanel>
+          <TabPanel value="1"><MyProgressOpenClass myOpenLectures={myOpenLectures}></MyProgressOpenClass></TabPanel>
           <TabPanel value="2">Item Two</TabPanel>
         </TabContext>
       </Box>
       </div>
+      : null
     );
+}
+function MyProgressOpenClass(props) {
+  return (
+    <ClassGrid currentPage={props.myOpenLectures}></ClassGrid>
+  );
 }
 
 export default MyOwnClassView;

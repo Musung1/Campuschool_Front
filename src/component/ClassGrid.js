@@ -3,13 +3,12 @@ import { Grid } from "@mui/material";
 import { useLectureCardStore } from "../store/LectureCardStore";
 import { useLectureSearchStore } from "../store/LectureSearchStore";
 function ClassGrid(props) {
-    const {currentPage} = useLectureSearchStore();
     const contents = () => {
         var lectures = []
-        if(currentPage.content != null) {
-            lectures = currentPage.content
+        if(props.currentPage != null) {
+            lectures = props.currentPage
         }
-        console.log(currentPage)
+        console.log(lectures)
         return lectures.map((lecture)=> <LectureCard lecture={lecture}></LectureCard>)
     }
     return (

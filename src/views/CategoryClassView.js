@@ -13,12 +13,13 @@ function CategoryClassView() {
   const {currentPage,setCategoryType,setCurrentPage,pageNumber,setPageNumber} = useLectureSearchStore();
   useEffect(() => {
     async function getLec() {
-      console.log(pageNumber)
-          setCategoryType(category)
-          await setCurrentPage()
-          if(currentPage.content != null) {
-            setInit(true)
-          }
+      if(currentPage != null) {
+        setCategoryType(category)
+        await setCurrentPage()
+        if(currentPage.content != null) {
+          setInit(true)
+        }
+      }
     }
     getLec()
   },[category])
@@ -31,10 +32,11 @@ function CategoryClassView() {
   const content = () => {
     console.log(init)
     return(
-      init? <ClassGrid></ClassGrid> : null
+      init? <ClassGrid currentPage = {currentPage.content}></ClassGrid> : null
     )
   }
   return (
+    init? 
     <div>
         <CategoryHeader name={category}></CategoryHeader>
         <CategoryList></CategoryList>
@@ -44,6 +46,7 @@ function CategoryClassView() {
         <Pagination count={currentPage.totalPages} variant="outlined" shape="rounded" onChange={handleChange}/>
         </div>
     </div>
+    :null
   );
 }
 

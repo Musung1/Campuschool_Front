@@ -98,6 +98,10 @@ function AccountMenu() {
     const goMakeClass = () => {
         navigate('/class/open')
     }
+    const goProfile = () => {
+      setAnchorEl(null);
+      navigate('/profile')
+  }
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
@@ -165,7 +169,7 @@ function AccountMenu() {
           transformOrigin={{ horizontal: 'right', vertical: 'top' }}
           anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
         >
-          <MenuItem onClick={handleClose}>
+          <MenuItem onClick={goProfile}>
             <Avatar /> Profile
           </MenuItem>
           <Divider />
