@@ -6,12 +6,7 @@ import {
   modifyName,
 } from "../api/UserAPI";
 const useUserStore = create((set) => ({
-  user: {},
-  // id: '',
-  // name: '',
-  // img: '',
-  // portfolioImg: '',
-  // roleType: '',
+  user: null,
   img: null,
   setImage: async (value) => {
     set({ img: value });
@@ -23,21 +18,18 @@ const useUserStore = create((set) => ({
   setDescription: async (description) => {
     await modifyDescription(description);
   },
+  clearUser: () => {
+    set({ user: null });
+  },
   setUser: (userDTO) => {
     set({
-      user: {
-        id: userDTO.id,
-        name: userDTO.name,
-        img: userDTO.img,
-        portfolioImg: userDTO.portfolioImg,
-        roleType: userDTO.roleType,
-      },
+      user: userDTO,
     });
   },
   userDetail: async () => {
     try {
       const userDTO = await getUser();
-      console.log(userDTO);
+      localStorage.setItem("user", JSON.stringify(userDTO));
       set({
         user: {
           id: userDTO.id,
@@ -49,6 +41,7 @@ const useUserStore = create((set) => ({
         },
       });
     } catch {
+      localStorage.setItem("user", null);
       console.log("error");
     }
   },

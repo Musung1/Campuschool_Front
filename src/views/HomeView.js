@@ -4,20 +4,26 @@ import CarouselView from "../component/CarouselView";
 import CategoryList from "../component/CategoryList";
 import { useLectureCardStore } from "../store/LectureCardStore";
 import { useEffect } from "react";
+import ReviewCarousel from "../component/ReviewCarousel";
+import { Stack } from "@mui/material";
 function Home() {
-  const {setPopularLectures,setRecentLectures } = useLectureCardStore();
+  const { setPopularLectures, setRecentLectures } = useLectureCardStore();
   useEffect(() => {
-    setPopularLectures()
-    setRecentLectures()
-}, []);
+    setPopularLectures();
+    setRecentLectures();
+  }, []);
   return (
-    <div>
+    <Stack spacing={4}>
       <CategoryHeader name="home"></CategoryHeader>
       <CategoryList></CategoryList>
-      <CarouselView title="한동대 인기 클래스" type="popular" />
-      <CarouselView title="신규 클래스" type="recent"></CarouselView>
-      <CarouselView title="포트폴리오 리스트"></CarouselView>
-    </div>
+      <CarouselView title="한동대 인기 클래스" type="popular" url={"/class/"} />
+      <CarouselView
+        title="신규 클래스"
+        type="recent"
+        url={"/class/"}
+      ></CarouselView>
+      <ReviewCarousel title="최신 수업 리뷰" url={"/class/"}></ReviewCarousel>
+    </Stack>
   );
 }
 

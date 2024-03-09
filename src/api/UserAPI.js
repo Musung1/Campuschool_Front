@@ -1,6 +1,7 @@
 import axios from "axios";
+import { baseUrl } from "../constant/BaseUrl";
 
-const API_BASE_URL = "http://localhost:8080/api";
+const API_BASE_URL = baseUrl + "/api";
 
 export const apiService = axios.create({
   baseURL: API_BASE_URL,
@@ -64,6 +65,7 @@ export const logout = async () => {
   }
 };
 export const getUser = async () => {
+  console.log(localStorage.getItem("accessToken"));
   try {
     const response = await loginedUserAPIService.get("/user");
     return response.data;

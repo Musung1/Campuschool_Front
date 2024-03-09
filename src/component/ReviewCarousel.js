@@ -2,31 +2,37 @@ import LectureCard from "./LectureCard";
 import { Stack, Button, Paper, Typography } from "@mui/material";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 import { useLectureCardStore } from "../store/LectureCardStore";
+import ReviewCard from "./ReviewCard";
+import { getRecentReviews } from "../api/ReviewAPI";
 function CarouselView(props) {
-  const { popularLectures, recentLectures } = useLectureCardStore();
+  const [recentReviews, setRecentReviews] = useState(null);
+
   const settings = {
+    arrows: true,
     dots: true,
     infinite: true,
-    speed: 500,
-    slidesToShow: 4,
+    slidesToShow: 3,
     slidesToScroll: 1,
+    speed: 500,
   };
-  const contents = () => {
-    var lectures = [];
-    if (props.type === "popular") {
-      if (popularLectures == null) return null;
-      lectures = popularLectures;
-    } else if (props.type === "recent") {
-      if (recentLectures == null) return null;
-      lectures = recentLectures;
+  useEffect(() => {
+    async function init() {
+      setRecentReviews(await getRecentReviews());
     }
-    console.log(lectures);
-    return lectures.map((lecture) => (
+    init();
+  }, []);
+  if (recentReviews == null) return null;
+  const contents = () => {
+    return recentReviews.map((review) => (
       <div style={{ margin: "20px" }}>
-        <LectureCard lecture={lecture} url={props.url}></LectureCard>
+        <ReviewCard
+          review={review}
+          url={props.url}
+          style={{ margin: "0 10px" }}
+        ></ReviewCard>
       </div>
     ));
   };
@@ -41,4 +47,5 @@ function CarouselView(props) {
     </Stack>
   );
 }
+
 export default CarouselView;

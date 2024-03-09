@@ -3,10 +3,11 @@ import { Container, Card, CardMedia } from "@mui/material";
 import imageCompression from "browser-image-compression";
 import useUserStore from "../store/UserStore";
 import avatar from "../assets/categoryIcon/defaultAvatar.png";
+import { imgUrl } from "../constant/BaseUrl";
 
 const ProfileImage = () => {
   const { user, img, setImage, userDetail } = useUserStore();
-  const image = user.img != null ? "http://localhost:8080" + user.img : avatar;
+  const image = user.img != null ? imgUrl(user.img) : avatar;
   const [previewUrl, setPreviewUrl] = useState(image);
 
   const handleImageChange = async (e) => {

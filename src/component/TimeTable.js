@@ -113,7 +113,10 @@ function RegisterCellList(props) {
     <TableRow key={index}>
       <TableCell>{time}</TableCell>
       {days.map((day, index) => (
-        <TableCell key={index} sx={{ border: "1px solid black", padding: 0 }}>
+        <TableCell
+          key={index}
+          sx={{ height: "3px", border: "1px solid black", padding: 0 }}
+        >
           <UseRegisterTimeCell
             day={day}
             time={time}
