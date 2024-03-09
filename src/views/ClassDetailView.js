@@ -11,6 +11,8 @@ import { useNavigate } from "react-router-dom";
 import { useLectureDetailStore } from "../store/LectureDetailStore";
 import { useParams } from "react-router-dom";
 import { BlankPaper } from "../component/BlankPaper";
+import { imgUrl } from "../constant/BaseUrl";
+import Reviews from "../component/Reviews";
 
 function ClassDetailView() {
   const { lectureDetail, setLectureDetail } = useLectureDetailStore();
@@ -54,7 +56,7 @@ function BackgroundImage() {
   );
 }
 function TeacherImage(props) {
-  const url = "http://localhost:8080" + props.image;
+  const url = imgUrl(props.image);
   console.log(url);
   return (
     <div
@@ -93,6 +95,7 @@ function Pages() {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+  console.log(lectureDetail);
   return (
     <div
       style={{
@@ -101,9 +104,10 @@ function Pages() {
         alignItems: "left",
         margin: 10,
         width: 1000,
+        height: 1000,
       }}
     >
-      <Box sx={{ width: "100%", typography: "body1" }}>
+      <Box sx={{ width: "55%", height: "300", typography: "body1" }}>
         <TabContext value={value}>
           <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
             <TabList onChange={handleChange} aria-label="lab API tabs example">
@@ -134,7 +138,9 @@ function Pages() {
           <TabPanel value="4">
             <LectureImage image={lectureDetail.lectureImage} />
           </TabPanel>
-          <TabPanel value="5">Item Three</TabPanel>
+          <TabPanel value="5">
+            <Reviews id={lectureDetail.id}></Reviews>
+          </TabPanel>
         </TabContext>
       </Box>
     </div>
@@ -204,7 +210,7 @@ function curriculumComponent(curriculum) {
   );
 }
 function LectureImage(props) {
-  const url = "http://localhost:8080" + props.image;
+  const url = imgUrl(props.image);
   return (
     <Stack alignItems={"left"} textAlign={"left"}>
       <img

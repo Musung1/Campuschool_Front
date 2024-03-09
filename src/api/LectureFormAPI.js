@@ -48,11 +48,39 @@ export const getMyOpenLectures = async () => {
     //throw error;
   }
 };
+export const getMyRegisterLectures = async () => {
+  try {
+    const response = await fileAPIService.get("/class/register");
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching lecture:", error);
+    //throw error;
+  }
+};
+export const getMyWaitLectures = async () => {
+  try {
+    const response = await fileAPIService.get("/class/wait");
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching lecture:", error);
+    //throw error;
+  }
+};
 export const getLectureDetail = async (id) => {
   console.log(id);
   try {
     const url = "/class/";
     const response = await fileAPIService.get("/class/" + id);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching lecture:", error);
+    //throw error;
+  }
+};
+export const registerLecture = async (id) => {
+  try {
+    const url = "/class/";
+    const response = await fileAPIService.post("/class/" + id);
     return response.data;
   } catch (error) {
     console.error("Error fetching lecture:", error);
